@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
 public class App {
     static ArrayList<Conta> contas;//varias contas//listcontas
 
