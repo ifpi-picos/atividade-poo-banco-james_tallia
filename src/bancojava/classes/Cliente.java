@@ -35,6 +35,7 @@ public class Cliente {
     public Endereco getEndereco() {
         return endereco;
 
+
     }
     public String getCidadeEndereco(){
         return this.endereco.getCidade();

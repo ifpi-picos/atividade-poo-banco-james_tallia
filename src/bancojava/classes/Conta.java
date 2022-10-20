@@ -3,6 +3,7 @@ package bancojava.classes;
 import javax.swing.*;
 import java.time.LocalDate;
 
+
 public class Conta {
     private static int contador = 1;
     private int numero;
