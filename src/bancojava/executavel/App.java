@@ -125,6 +125,7 @@ public class App {
         } else {
             JOptionPane.showMessageDialog(null, "Não ha contas para listar!");
         }
+        operacoes();
     }
 
 
@@ -137,4 +138,5 @@ public class App {
         }
         operacoes();
     }
+
 }

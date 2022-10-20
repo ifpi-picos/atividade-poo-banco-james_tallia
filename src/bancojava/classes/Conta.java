@@ -1,5 +1,6 @@
 package bancojava.classes;
 
+import javax.swing.*;
 import java.time.LocalDate;
 
 public class Conta {
@@ -21,9 +22,9 @@ public class Conta {
     public void Sacar(double valor) {
         if (valor > 0 && this.getSaldo() >= 0) {
             setSaldo(getSaldo() - valor);
-            System.out.println(" Saque realizado com sucesso ");
+            JOptionPane.showMessageDialog(null, " Saque realizado com sucesso! ");
         } else {
-            System.out.println(" Não foi possivel realizar o saque ");
+            JOptionPane.showMessageDialog(null, " Não foi possivel realizar o saque! ");
         }
     }
 
@@ -31,18 +32,18 @@ public class Conta {
         if (valor > 0 && this.getSaldo() >= 0) {
             setSaldo(getSaldo() - valor);
             contaParaDeposito.saldo = contaParaDeposito.getSaldo() + valor;
-            System.out.println(" Transferência realizada com sucesso ");
+            JOptionPane.showMessageDialog(null, " Transferência realizada com sucesso! ");
         } else {
-            System.out.println(" Não foi possivel realizar a tranferência ");
+            JOptionPane.showMessageDialog(null, " Não foi possivel realizar a tranferência! ");
         }
     }
 
     public void Deposito(double valor) {
         if (valor > 0) {
             setSaldo(getSaldo() + valor);
-            System.out.println(" Deposito realizado com sucesso ");
+            JOptionPane.showMessageDialog(null, " Deposito realizado com sucesso! ");
         } else {
-            System.out.println("Não foi possivel realizar o depoisito ");
+            JOptionPane.showMessageDialog(null, "Não foi possivel realizar o depoisito! ");
         }
     }
 
