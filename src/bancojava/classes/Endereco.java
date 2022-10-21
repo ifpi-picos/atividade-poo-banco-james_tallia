@@ -1,5 +1,6 @@
 package bancojava.classes;
 
+
 public class Endereco {
     private String logradouro;
     private int numeroEndereco;
