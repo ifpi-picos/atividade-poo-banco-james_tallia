@@ -20,7 +20,7 @@ public class Conta {
 
     }
 
-    public void Sacar(double valor) {
+    public void sacar(double valor) {
         if (valor > 0 && this.getSaldo() >= 0) {
             setSaldo(getSaldo() - valor);
             JOptionPane.showMessageDialog(null, " Saque realizado com sucesso! ");
@@ -29,7 +29,7 @@ public class Conta {
         }
     }
 
-    public void Tranferir(Conta contaParaDeposito, Double valor) {
+    public void tranferir(Conta contaParaDeposito, Double valor) {
         if (valor > 0 && this.getSaldo() >= 0) {
             setSaldo(getSaldo() - valor);
             contaParaDeposito.saldo = contaParaDeposito.getSaldo() + valor;
@@ -39,7 +39,7 @@ public class Conta {
         }
     }
 
-    public void Deposito(double valor) {
+    public void deposito(double valor) {
         if (valor > 0) {
             setSaldo(getSaldo() + valor);
             JOptionPane.showMessageDialog(null, " Deposito realizado com sucesso! ");

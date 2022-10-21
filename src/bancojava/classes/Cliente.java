@@ -1,7 +1,6 @@
 package bancojava.classes;
 
 import java.time.LocalDate;
-
 public class Cliente {
     private String nome;
     private final LocalDate datanascimento;

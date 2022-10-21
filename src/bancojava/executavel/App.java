@@ -18,22 +18,23 @@ public class App {
         operacoes();
     }
     private static void operacoes() {
-        String operacao = JOptionPane.showInputDialog("OPERAÇÕES:\n1-Criar conta\n2-Depositar\n3-Transferir\n4-Sacar\n5-Listar\n6-Saldo");
+        String operacao = JOptionPane.showInputDialog("OPERAÇÕES:\n1-Criar conta\n2-Depositar\n3-Transferir\n4-Sacar\n5-Listar\n6-Saldo\n7-Sair");
         int operacaoInteira = Integer.parseInt(operacao);
 
         switch (operacaoInteira) {
-            case 1 -> CriarConta();
-            case 2 -> Depositar();
-            case 3 -> Transferir();
-            case 4 -> Sacar();
-            case 5 -> Listar();
-            case 6 -> Saldo();
+            case 1 -> criarConta();
+            case 2 -> depositar();
+            case 3 -> transferir();
+            case 4 -> sacar();
+            case 5 -> listar();
+            case 6 -> saldo();
+            case 7 -> sair();
             default -> JOptionPane.showMessageDialog(null, "Escolha uma operação válida!");
         }
-
+            operacoes();
     }
 
-    private static void CriarConta() {
+    private static void criarConta() {
 
         String nome = JOptionPane.showInputDialog("Informe o nome do cliente: ");
         String cpf = JOptionPane.showInputDialog("Informe o Cpf : ");
@@ -66,14 +67,14 @@ public class App {
         return conta;
     }
 
-    private static void Depositar() {
+    private static void depositar() {
         String numero = JOptionPane.showInputDialog("Digite o numero da conta: ");
         int novoNumero = Integer.parseInt(numero);
         Conta conta = encontrandoContas(novoNumero);
         if (conta != null) {
             String valor =JOptionPane.showInputDialog(" Qual o valor que deseja depositar ?");
             double novoValor = Double.parseDouble(valor);
-            conta.Deposito(novoValor);
+            conta.deposito(novoValor);
             JOptionPane.showMessageDialog(null, "Valor depositado com sucesso!");
 
         } else {
@@ -82,14 +83,14 @@ public class App {
         operacoes();
     }
 
-    private static void Sacar() {
+    private static void sacar() {
         String numero =JOptionPane.showInputDialog("Digite o numero da conta: ");
         int novoNumero = Integer.parseInt(numero);
         Conta conta = encontrandoContas(novoNumero);
         if (conta != null) {
             String valor = JOptionPane.showInputDialog("Qual o valor do sac ? ");
             double novoValor = Double.parseDouble(valor);
-            conta.Sacar(novoValor);
+            conta.sacar(novoValor);
 
             JOptionPane.showMessageDialog(null, "\nSac realizado com sucesso ");
         } else {
@@ -98,7 +99,7 @@ public class App {
         operacoes();
     }
 
-    private static void Transferir() {
+    private static void transferir() {
         String numeroRemetente = JOptionPane.showInputDialog("Numero da conta do remetente: ");
         int novoNumeroRemetente = Integer.parseInt(numeroRemetente);
         Conta contaRemetente = encontrandoContas(novoNumeroRemetente);
@@ -109,7 +110,7 @@ public class App {
             if (contaDestinatario != null) {
                 String valor = JOptionPane.showInputDialog("Digite o valor da transferência ");
                 double novoValor = Integer.parseInt(valor);
-                contaRemetente.Tranferir(contaDestinatario, novoValor);
+                contaRemetente.tranferir(contaDestinatario, novoValor);
                 JOptionPane.showMessageDialog(null, "\nValor  transferido com suscesso  ");
             } else {
                 JOptionPane.showMessageDialog(null, "Não foi possivel fazer a transferência! ");
@@ -118,7 +119,7 @@ public class App {
         operacoes();
     }
 
-    private static void Listar() {
+    private static void listar() {
         if (contas.size() > 0) {
             for (Conta conta : contas) {
                 JOptionPane.showMessageDialog(null, ""+conta);
@@ -131,7 +132,7 @@ public class App {
 
 
 
-    private static void Saldo() {
+    private static void saldo() {
         String numero = JOptionPane.showInputDialog("Digite o numero da conta: ");
         int novoNumero = Integer.parseInt(numero);
         Conta conta = encontrandoContas(novoNumero);
@@ -139,6 +140,11 @@ public class App {
             JOptionPane.showMessageDialog(null, "Saldo: "+conta.getSaldo());
         }
         operacoes();
+    }
+
+    private static void sair(){
+        JOptionPane.showMessageDialog(null, "Saída executada!");
+        System.exit(0);
     }
 
 }
