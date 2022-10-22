@@ -2,8 +2,8 @@ package bancojava.classes;
 
 public class ContaCorrente extends Conta{
     private double chequeEspecial;
-    public ContaCorrente(Cliente Cliente){
-        super(Cliente);
+    public ContaCorrente(Cliente cliente, String tipoConta){
+        super(cliente, tipoConta);
     }
 
     public double getChequeEspecial() {

@@ -47,12 +47,12 @@ public class App {
         int numeroEndereco = Integer.parseInt(numeroEndereco1);
         String uf = JOptionPane.showInputDialog("Infome o uf :");
         Endereco endereco = new Endereco(logradouro, numeroEndereco, bairro, cidade, uf);
-        Cliente cliente = new Cliente(nome, datanascimento, cpf, endereco, tipoConta);
+        Cliente cliente = new Cliente(nome, datanascimento, cpf, endereco);
         
    
         
-        if (tipoConta.equals("Poupança")) {
-            ContaPoupanca conta = new ContaPoupanca(cliente);
+       if (tipoConta.equals("Poupança")) {
+            ContaPoupanca conta = new ContaPoupanca(cliente, tipoConta);
 
             contas.add(conta);
 
@@ -60,7 +60,7 @@ public class App {
 
         } else if (tipoConta.equals("Corrente")){
 
-            ContaCorrente conta = new ContaCorrente(cliente);
+            ContaCorrente conta = new ContaCorrente(cliente, tipoConta);
 
             contas.add(conta);
             JOptionPane.showMessageDialog(null, "Sua Conta Corrente foi criada com sucesso!");

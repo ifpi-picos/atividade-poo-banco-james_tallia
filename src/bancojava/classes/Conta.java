@@ -9,13 +9,15 @@ public class Conta {
     private int numero;
     private int agencia;
     private double saldo;
-    private Cliente Cliente;
+    private String tipoConta;
+    private Cliente cliente;
 
-    public Conta(Cliente Cliente) {
+    public Conta(Cliente cliente, String tipoConta) {
         this.agencia = agencia;
         this.numero = contador;
         this.saldo = saldo;
-        this.Cliente = Cliente;
+        this.cliente = cliente;
+        this.tipoConta = tipoConta;
         contador += 1;
 
     }
@@ -69,38 +71,38 @@ public class Conta {
     }
 
     public Cliente getCliente() {
-        return Cliente;
+        return cliente;
     }
 
     public String getNomecliente() {
-        return this.Cliente.getNome();
+        return this.cliente.getNome();
     }
 
     public LocalDate getDatacliente() {
-        return this.Cliente.getDatanascimento();
+        return this.cliente.getDatanascimento();
     }
 
     public String getCpfcliente() {
-        return this.Cliente.getCpf();
+        return this.cliente.getCpf();
 
     }
 
     public String getClienteEnderecocidade() {
-        return this.Cliente.getCidadeEndereco();
+        return this.cliente.getCidadeEndereco();
     }
 
     public String getClienteEnderecoUf() {
-        return this.Cliente.getUfEndereco();
+        return this.cliente.getUfEndereco();
     }
 
     public String getClienteLogradouroEndereco() {
-        return this.Cliente.getLogradouroEndereco();
+        return this.cliente.getLogradouroEndereco();
     }
     public int getClienteNumeroEndereco(){
-        return this.Cliente.getNumeroEndereco();
+        return this.cliente.getNumeroEndereco();
     }
     public String getClienteBairroEndereco(){
-        return this.Cliente.getBairroEndereco();
+        return this.cliente.getBairroEndereco();
     }
 
     public String toString() {
