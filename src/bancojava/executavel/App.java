@@ -1,8 +1,6 @@
 package bancojava.executavel;
 
-import bancojava.classes.Cliente;
-import bancojava.classes.Conta;
-import bancojava.classes.Endereco;
+import bancojava.classes.*;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -15,13 +13,13 @@ public class App {
     public static void main(String[] args) {
 
         contas = new ArrayList<>();
-        operacoes();
+        comandos();
     }
-    private static void operacoes() {
-        String operacao = JOptionPane.showInputDialog("OPERAÇÕES:\n1-Criar conta\n2-Depositar\n3-Transferir\n4-Sacar\n5-Listar\n6-Saldo\n7-Sair");
-        int operacaoInteira = Integer.parseInt(operacao);
+    private static void comandos() {
+        String comando = JOptionPane.showInputDialog("COMANDOS:\n1-Criar conta\n2-Depositar\n3-Transferir\n4-Sacar\n5-Listar\n6-Saldo\n7-Sair");
+        int comandoInteiro = Integer.parseInt(comando);
 
-        switch (operacaoInteira) {
+        switch (comandoInteiro) {
             case 1 -> criarConta();
             case 2 -> depositar();
             case 3 -> transferir();
@@ -31,11 +29,12 @@ public class App {
             case 7 -> sair();
             default -> JOptionPane.showMessageDialog(null, "Escolha uma operação válida!");
         }
-            operacoes();
+            comandos();
     }
 
     private static void criarConta() {
 
+        String tipoConta = JOptionPane.showInputDialog("Qual tipo de conta desejas criar?(Corrente ou Poupança)");
         String nome = JOptionPane.showInputDialog("Informe o nome do cliente: ");
         String cpf = JOptionPane.showInputDialog("Informe o Cpf : ");
         String dataString = JOptionPane.showInputDialog("Informe a data de nascimento: ");
@@ -52,7 +51,21 @@ public class App {
         Conta conta = new Conta(cliente);
         contas.add(conta);
         JOptionPane.showMessageDialog(null, "Conta criada com sucesso!");
-        operacoes();
+        if (tipoConta.equals("Poupança")) {
+            ContaPoupanca Conta = new ContaPoupanca(cliente);
+
+            contas.add(conta);
+
+            JOptionPane.showMessageDialog(null, "Sua Conta Poupanca foi criada com sucesso!");
+
+        } else if (tipoConta.equals("Corrente")){
+
+            ContaCorrente Conta = new ContaCorrente(cliente);
+
+            contas.add(conta);
+            JOptionPane.showMessageDialog(null, "Sua Conta Corrente foi criada com sucesso!");
+        }
+        comandos();
     }
 
     private static Conta encontrandoContas(int numero) {
@@ -80,7 +93,7 @@ public class App {
         } else {
             JOptionPane.showMessageDialog(null, " Não foi possivel realizar o deposito ");
         }
-        operacoes();
+        comandos();
     }
 
     private static void sacar() {
@@ -96,7 +109,7 @@ public class App {
         } else {
             JOptionPane.showMessageDialog(null, "Não foi possivel realizar o sac!");
         }
-        operacoes();
+        comandos();
     }
 
     private static void transferir() {
@@ -116,7 +129,7 @@ public class App {
                 JOptionPane.showMessageDialog(null, "Não foi possivel fazer a transferência! ");
             }
         }
-        operacoes();
+        comandos();
     }
 
     private static void listar() {
@@ -127,7 +140,7 @@ public class App {
         } else {
             JOptionPane.showMessageDialog(null, "Não ha contas para listar!");
         }
-        operacoes();
+        comandos();
     }
 
 
@@ -139,7 +152,7 @@ public class App {
         if (conta != null) {
             JOptionPane.showMessageDialog(null, "Saldo: "+conta.getSaldo());
         }
-        operacoes();
+        comandos();
     }
 
     private static void sair(){
