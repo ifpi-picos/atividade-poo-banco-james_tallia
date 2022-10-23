@@ -1,6 +1,5 @@
 package bancojava.classes;
 
-import javax.swing.*;
 import java.time.LocalDate;
 
 
@@ -9,10 +8,10 @@ public class Conta {
     private int numero;
     private int agencia;
     private double saldo;
-    private String tipoConta;
+    private int tipoConta;
     private Cliente cliente;
 
-    public Conta(Cliente cliente, String tipoConta) {
+    public Conta(Cliente cliente, int tipoConta) {
         this.agencia = agencia;
         this.numero = contador;
         this.saldo = saldo;
@@ -25,9 +24,8 @@ public class Conta {
     public void sacar(double valor) {
         if (valor > 0 && this.getSaldo() >= 0) {
             setSaldo(getSaldo() - valor);
-            JOptionPane.showMessageDialog(null, " Saque realizado com sucesso! ");
         } else {
-            JOptionPane.showMessageDialog(null, " Não foi possivel realizar o saque! ");
+            System.exit(0);
         }
     }
 
@@ -35,21 +33,18 @@ public class Conta {
         if (valor > 0 && this.getSaldo() >= 0) {
             setSaldo(getSaldo() - valor);
             contaParaDeposito.saldo = contaParaDeposito.getSaldo() + valor;
-            JOptionPane.showMessageDialog(null, " Transferência realizada com sucesso! ");
         } else {
-            JOptionPane.showMessageDialog(null, " Não foi possivel realizar a tranferência! ");
+            System.exit(0);
         }
     }
 
     public void deposito(double valor) {
         if (valor > 0) {
             setSaldo(getSaldo() + valor);
-            JOptionPane.showMessageDialog(null, " Deposito realizado com sucesso! ");
         } else {
-            JOptionPane.showMessageDialog(null, "Não foi possivel realizar o depoisito! ");
+            System.exit(0);
         }
     }
-
 
 
     public int getNumero() {
@@ -72,6 +67,10 @@ public class Conta {
 
     public Cliente getCliente() {
         return cliente;
+    }
+
+    public int getTipoConta() {
+        return tipoConta;
     }
 
     public String getNomecliente() {
@@ -104,9 +103,19 @@ public class Conta {
     public String getClienteBairroEndereco(){
         return this.cliente.getBairroEndereco();
     }
+    public String getContaTipo(){
+        if(getTipoConta()==0){
+            return "Poupança";
+        }
+        else if(getTipoConta()==1){
+            return "Corrente";
+        }
+        return null;
+    }
 
     public String toString() {
         return " Nome Cliente: " + getNomecliente() + "\n" +
+                " Conta do tipo: " + getContaTipo() + "\n" +
                 " Saldo: " + getSaldo() + "\n" +
                 " Numero da conta: " + numero + "\n" +
                 " Data Nascimento: " + getDatacliente() + "\n" +

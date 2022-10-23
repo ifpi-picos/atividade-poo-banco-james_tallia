@@ -3,7 +3,7 @@ package bancojava.classes;
 public class ContaPoupanca extends Conta{
     private double rendimento;
 
-    public ContaPoupanca(Cliente cliente, String tipoConta) {
+    public ContaPoupanca(Cliente cliente, int tipoConta) {
         super(cliente, tipoConta);
 
 

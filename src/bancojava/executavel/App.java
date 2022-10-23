@@ -34,7 +34,11 @@ public class App {
 
     private static void criarConta() {
 
-        String tipoConta = JOptionPane.showInputDialog("Qual tipo de conta desejas criar?(Corrente ou Poupança)");
+        String[] options = {"Conta Poupança", "Conta Corrente"};
+        int tipoConta = JOptionPane.showOptionDialog(null, "Escolha o tipo de conta:",
+                "Clique em uma opção",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        System.out.println(tipoConta);
         String nome = JOptionPane.showInputDialog("Informe o nome do cliente: ");
         String cpf = JOptionPane.showInputDialog("Informe o Cpf : ");
         String dataString = JOptionPane.showInputDialog("Informe a data de nascimento: ");
@@ -48,17 +52,17 @@ public class App {
         String uf = JOptionPane.showInputDialog("Infome o uf :");
         Endereco endereco = new Endereco(logradouro, numeroEndereco, bairro, cidade, uf);
         Cliente cliente = new Cliente(nome, datanascimento, cpf, endereco);
-        
-   
-        
-       if (tipoConta.equals("Poupança")) {
+
+
+
+       if (tipoConta == 0) {
             ContaPoupanca conta = new ContaPoupanca(cliente, tipoConta);
 
             contas.add(conta);
 
-            JOptionPane.showMessageDialog(null, "Sua Conta Poupanca foi criada com sucesso!");
+            JOptionPane.showMessageDialog(null, "Sua Conta Poupança foi criada com sucesso!");
 
-        } else if (tipoConta.equals("Corrente")){
+        } else if (tipoConta == 1){
 
             ContaCorrente conta = new ContaCorrente(cliente, tipoConta);
 
@@ -91,7 +95,7 @@ public class App {
             JOptionPane.showMessageDialog(null, "Valor depositado com sucesso!");
 
         } else {
-            JOptionPane.showMessageDialog(null, " Não foi possivel realizar o deposito ");
+            JOptionPane.showMessageDialog(null, " Não foi possivel realizar o deposito! ");
         }
         comandos();
     }
@@ -138,7 +142,7 @@ public class App {
                 JOptionPane.showMessageDialog(null, ""+conta);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Não ha contas para listar!");
+            JOptionPane.showMessageDialog(null, "Não há contas para listar!");
         }
         comandos();
     }
