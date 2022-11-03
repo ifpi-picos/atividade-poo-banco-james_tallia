@@ -17,24 +17,7 @@ public class Email implements Notificacao {
 
     }
     @Override
-    public void enviarNotificacao(int comandoInteiro, double valor, LocalDate data, LocalTime hora) {
-
-
-            if (comandoInteiro == 2){
-
-                JOptionPane.showMessageDialog(null, "Depósito realizado", "Email",JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Depósito realizado no valor de "+valor+" na data: "+data.format(dataFormatada)+" na hora: "+hora.format(horaFormatada), "Email",JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Email enviado com sucesso!", "Email",JOptionPane.ERROR_MESSAGE);
-            } else if (comandoInteiro == 3) {
-                JOptionPane.showMessageDialog(null, "Transferência realizada", "Email",JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Transferência realizada no valor de "+valor+" na data: "+data.format(dataFormatada)+" na hora: "+hora.format(horaFormatada), "Email",JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Email enviado com sucesso!", "Email",JOptionPane.ERROR_MESSAGE);
-            } else if (comandoInteiro == 4) {
-
-                JOptionPane.showMessageDialog(null, "Saque realizado", "Email",JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Saque realizado no valor de "+valor+" na data: "+data.format(dataFormatada)+" na hora: "+hora.format(horaFormatada), "Email",JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Email enviado com sucesso!", "Email",JOptionPane.ERROR_MESSAGE);
-            }
-
+    public void enviarNotificacao(String comando1, double valor, LocalDate data, LocalTime hora) {
+                JOptionPane.showMessageDialog(null, ""+comando1+" realizado(a) no valor de "+valor+" na data: "+data.format(dataFormatada)+" na hora: "+hora.format(horaFormatada), "Email",JOptionPane.ERROR_MESSAGE);
     }
 }

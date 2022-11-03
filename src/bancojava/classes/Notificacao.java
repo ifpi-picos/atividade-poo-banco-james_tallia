@@ -4,5 +4,5 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public interface Notificacao{
-    public void enviarNotificacao(int comandoInteiro, double valor, LocalDate data, LocalTime hora);
+    public void enviarNotificacao(String comando1, double valor, LocalDate data, LocalTime hora);
 }

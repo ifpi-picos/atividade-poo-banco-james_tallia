@@ -32,7 +32,7 @@ public class Conta {
     public void sacar(double valor) {
         if (valor > 0 && this.getSaldo() >= 0) {
             setSaldo(getSaldo() - valor);
-            this.notificacao.enviarNotificacao(4, valor,data, hora);
+            this.notificacao.enviarNotificacao("Saque", valor,data, hora);
         } else {
             System.exit(0);
         }
@@ -42,7 +42,7 @@ public class Conta {
         if (valor > 0 && this.getSaldo() >= 0) {
             setSaldo(getSaldo() - valor);
             contaParaDeposito.saldo = contaParaDeposito.getSaldo() + valor;
-            this.notificacao.enviarNotificacao(3, valor,data, hora);
+            this.notificacao.enviarNotificacao("Transferência", valor,data, hora);
         } else {
             System.exit(0);
         }
@@ -51,7 +51,7 @@ public class Conta {
     public void deposito(double valor) {
         if (valor > 0) {
             setSaldo(getSaldo() + valor);
-            this.notificacao.enviarNotificacao(2, valor,data, hora);
+            this.notificacao.enviarNotificacao("Depósito", valor,data, hora);
         } else {
             System.exit(0);
         }
