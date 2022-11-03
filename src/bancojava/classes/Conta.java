@@ -1,6 +1,8 @@
 package bancojava.classes;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class Conta {
@@ -10,13 +12,19 @@ public class Conta {
     private double saldo;
     private int tipoConta;
     private Cliente cliente;
+    Notificacao notificacao;
+    LocalDate data = LocalDate.now();
+    DateTimeFormatter dataFormatada = DateTimeFormatter.ofPattern("E, dd/MM/yyy");
+    LocalTime hora = LocalTime.now();
+    DateTimeFormatter horaFormatada = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-    public Conta(Cliente cliente, int tipoConta) {
+    public Conta(Cliente cliente, int tipoConta, Notificacao notificacao) {
         this.agencia = agencia;
         this.numero = contador;
         this.saldo = saldo;
         this.cliente = cliente;
         this.tipoConta = tipoConta;
+        this.notificacao = notificacao;
         contador += 1;
 
     }
@@ -24,6 +32,7 @@ public class Conta {
     public void sacar(double valor) {
         if (valor > 0 && this.getSaldo() >= 0) {
             setSaldo(getSaldo() - valor);
+            this.notificacao.enviarNotificacao(4, valor,data, hora);
         } else {
             System.exit(0);
         }
@@ -33,6 +42,7 @@ public class Conta {
         if (valor > 0 && this.getSaldo() >= 0) {
             setSaldo(getSaldo() - valor);
             contaParaDeposito.saldo = contaParaDeposito.getSaldo() + valor;
+            this.notificacao.enviarNotificacao(3, valor,data, hora);
         } else {
             System.exit(0);
         }
@@ -41,6 +51,7 @@ public class Conta {
     public void deposito(double valor) {
         if (valor > 0) {
             setSaldo(getSaldo() + valor);
+            this.notificacao.enviarNotificacao(2, valor,data, hora);
         } else {
             System.exit(0);
         }
@@ -123,6 +134,6 @@ public class Conta {
                 " Endereço: " + "\n-Cidade: " +getClienteEnderecocidade()
                 +"\n-Logradouro: " +getClienteLogradouroEndereco() +"\n-Número: "+getClienteNumeroEndereco()
                 +"\n-Bairro: "+getClienteBairroEndereco()
-                + "\n-Uf: " + getClienteEnderecoUf();
+                + "\n-UF: " + getClienteEnderecoUf();
     }
 }

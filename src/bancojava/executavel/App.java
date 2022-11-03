@@ -3,16 +3,17 @@ package bancojava.executavel;
 import bancojava.classes.*;
 
 import javax.swing.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
-
-public class App {
+public class App{
     static ArrayList<Conta> contas;//varias contas//listcontas
 
     public static void main(String[] args) {
-
         contas = new ArrayList<>();
+        /*Email obj = */
         comandos();
     }
     private static void comandos() {
@@ -49,14 +50,14 @@ public class App {
         String bairro = JOptionPane.showInputDialog("Informe o Bairro: ");
         String numeroEndereco1 = JOptionPane.showInputDialog("Informe o número da sua residência: ");
         int numeroEndereco = Integer.parseInt(numeroEndereco1);
-        String uf = JOptionPane.showInputDialog("Infome o uf :");
+        String uf = JOptionPane.showInputDialog("Infome a UF(Unidade Federativa):");
         Endereco endereco = new Endereco(logradouro, numeroEndereco, bairro, cidade, uf);
         Cliente cliente = new Cliente(nome, datanascimento, cpf, endereco);
-
+        Notificacao notificacao = new Email();
 
 
        if (tipoConta == 0) {
-            ContaPoupanca conta = new ContaPoupanca(cliente, tipoConta);
+            ContaPoupanca conta = new ContaPoupanca(cliente, tipoConta, notificacao);
 
             contas.add(conta);
 
@@ -64,7 +65,7 @@ public class App {
 
         } else if (tipoConta == 1){
 
-            ContaCorrente conta = new ContaCorrente(cliente, tipoConta);
+            ContaCorrente conta = new ContaCorrente(cliente, tipoConta, notificacao);
 
             contas.add(conta);
             JOptionPane.showMessageDialog(null, "Sua Conta Corrente foi criada com sucesso!");
@@ -93,7 +94,6 @@ public class App {
             double novoValor = Double.parseDouble(valor);
             conta.deposito(novoValor);
             JOptionPane.showMessageDialog(null, "Valor depositado com sucesso!");
-
         } else {
             JOptionPane.showMessageDialog(null, " Não foi possivel realizar o deposito! ");
         }
@@ -163,5 +163,4 @@ public class App {
         JOptionPane.showMessageDialog(null, "Saída executada!");
         System.exit(0);
     }
-
 }
