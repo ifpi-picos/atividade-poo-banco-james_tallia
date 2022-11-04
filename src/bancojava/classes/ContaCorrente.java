@@ -22,31 +22,32 @@ public class ContaCorrente extends Conta{
 
     @Override
     public void sacar(double valor) {
-        if (getSaldo() > 0) {
-            System.exit(0);
+        if (this.getSaldo() > 0 && this.getSaldo() > valor) {
+            JOptionPane.showMessageDialog(null, "Saque realizado com sucesso!");
         }
-        if (getSaldo() < 0) {
-
+        else if (this.getSaldo() < 0 || this.getSaldo() < valor) {
+            JOptionPane.showMessageDialog(null,"O cheque especial será acionado!");
             valor = valor + getChequeEspecial();
+            JOptionPane.showMessageDialog(null, "O cheque especial foi acionado com sucesso! ", "Cheque Especial",JOptionPane.ERROR_MESSAGE);
+
         }
         super.sacar(valor);
-        JOptionPane.showMessageDialog(null, "O cheque especial foi acionado! ", "Cheque Especial",JOptionPane.ERROR_MESSAGE);
     }
 
     @Override
-    public void tranferir(Conta contaParaDeposito, Double valor) {
+    public void transferencia(Conta contaParaDeposito, Double valor) {
         this.contador += 1;
 
         if(this.contador <= 2){
-            super.tranferir(contaParaDeposito, valor);
+            super.transferencia(contaParaDeposito, valor);
         }
         else {
             double taxa = valor * 5 / 100;
 
             contaParaDeposito.setSaldo(valor + (contaParaDeposito.getSaldo() - taxa));
             valor = valor - taxa;
-            super.tranferir(contaParaDeposito, valor);
-            super.tranferir(contaParaDeposito, valor);
+            super.transferencia(contaParaDeposito, valor);
+            super.transferencia(contaParaDeposito, valor);
             super.notificacao.enviarNotificacao("Transferência", valor, data, hora);
         }
     }

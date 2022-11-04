@@ -1,5 +1,6 @@
 package bancojava.classes;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -30,20 +31,18 @@ public class Conta {
     }
 
     public void sacar(double valor) {
-        if (valor > 0 && this.getSaldo() >= 0) {
+        if (valor > 0 && this.getSaldo() > 0) {
             setSaldo(getSaldo() - valor);
             this.notificacao.enviarNotificacao("Saque", valor,data, hora);
-        } else {
-            System.exit(0);
+        } else if(this.getSaldo() <= 0) {
+            JOptionPane.showMessageDialog(null, "Não foi possível realizar o saque!");
         }
     }
 
-    public void tranferir(Conta contaParaDeposito, Double valor) {
-        if (valor > 0 && this.getSaldo() >= 0) {
+    public void transferencia(Conta contaParaDeposito, Double valor) {
+        if (valor > 0 && this.getSaldo() > 0) {
             setSaldo(getSaldo() - valor);
             contaParaDeposito.saldo = contaParaDeposito.getSaldo() + valor;
-        } else {
-            System.exit(0);
         }
     }
 
@@ -52,6 +51,7 @@ public class Conta {
             setSaldo(getSaldo() + valor);
             this.notificacao.enviarNotificacao("Depósito", valor,data, hora);
         } else {
+            JOptionPane.showMessageDialog(null, "Não foi possível realizar o depósito!");
             System.exit(0);
         }
     }

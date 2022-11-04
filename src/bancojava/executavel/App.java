@@ -105,13 +105,9 @@ public class App{
         int novoNumero = Integer.parseInt(numero);
         Conta conta = encontrandoContas(novoNumero);
         if (conta != null) {
-            String valor = JOptionPane.showInputDialog("Qual o valor do sac ? ");
+            String valor = JOptionPane.showInputDialog("Qual o valor do sac? ");
             double novoValor = Double.parseDouble(valor);
             conta.sacar(novoValor);
-
-            JOptionPane.showMessageDialog(null, "\nSac realizado com sucesso ");
-        } else {
-            JOptionPane.showMessageDialog(null, "Não foi possivel realizar o sac!");
         }
         comandos();
     }
@@ -120,6 +116,8 @@ public class App{
         String numeroRemetente = JOptionPane.showInputDialog("Numero da conta do remetente: ");
         int novoNumeroRemetente = Integer.parseInt(numeroRemetente);
         Conta contaRemetente = encontrandoContas(novoNumeroRemetente);
+        /*if(contaRemetente !=  ){
+            JOptionPane.showMessageDialog(null, "Conta não encontrada, não foi possível realizar a transferência!");}*/
         if (contaRemetente != null) {
             String numeroDestinatario = JOptionPane.showInputDialog("Numero da conta do destinatario: ");
             int novoNumeroDestinatario = Integer.parseInt(numeroDestinatario);
@@ -127,9 +125,7 @@ public class App{
             if (contaDestinatario != null) {
                 String valor = JOptionPane.showInputDialog("Digite o valor da transferência ");
                 double novoValor = Integer.parseInt(valor);
-                contaRemetente.tranferir(contaDestinatario, novoValor);
-            } else {
-                JOptionPane.showMessageDialog(null, "Não foi possivel fazer a transferência! ");
+                contaRemetente.transferencia(contaDestinatario, novoValor);
             }
         }
         comandos();
