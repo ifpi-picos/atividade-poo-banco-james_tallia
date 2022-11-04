@@ -128,7 +128,6 @@ public class App{
                 String valor = JOptionPane.showInputDialog("Digite o valor da transferência ");
                 double novoValor = Integer.parseInt(valor);
                 contaRemetente.tranferir(contaDestinatario, novoValor);
-                /*JOptionPane.showMessageDialog(null, "\nValor  transferido com suscesso  ");*/
             } else {
                 JOptionPane.showMessageDialog(null, "Não foi possivel fazer a transferência! ");
             }

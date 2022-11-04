@@ -26,7 +26,7 @@ public class ContaPoupanca extends Conta{
             valor = valor - taxa;
             super.tranferir(contaParaDeposito, valor);
             super.tranferir(contaParaDeposito, valor);
-            /*this.notificacao.enviarNotificacao("Transferência", valor, data, hora);*/
+            super.notificacao.enviarNotificacao("Transferência", valor, data, hora);
         }
         super.tranferir(contaParaDeposito, valor);
     }

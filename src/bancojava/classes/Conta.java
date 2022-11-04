@@ -42,7 +42,6 @@ public class Conta {
         if (valor > 0 && this.getSaldo() >= 0) {
             setSaldo(getSaldo() - valor);
             contaParaDeposito.saldo = contaParaDeposito.getSaldo() + valor;
-            this.notificacao.enviarNotificacao("Transferência", valor,data, hora);
         } else {
             System.exit(0);
         }
