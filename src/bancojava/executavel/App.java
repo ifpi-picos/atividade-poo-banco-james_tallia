@@ -3,17 +3,14 @@ package bancojava.executavel;
 import bancojava.classes.*;
 
 import javax.swing.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class App{
     static ArrayList<Conta> contas;//varias contas//listcontas
 
     public static void main(String[] args) {
         contas = new ArrayList<>();
-        /*Email obj = */
         comandos();
     }
     private static void comandos() {
@@ -93,7 +90,6 @@ public class App{
             String valor =JOptionPane.showInputDialog(" Qual o valor que deseja depositar ?");
             double novoValor = Double.parseDouble(valor);
             conta.deposito(novoValor);
-            /*JOptionPane.showMessageDialog(null, "Valor depositado com sucesso!");*/
         } else {
             JOptionPane.showMessageDialog(null, " Não foi possivel realizar o deposito! ");
         }
@@ -116,8 +112,6 @@ public class App{
         String numeroRemetente = JOptionPane.showInputDialog("Numero da conta do remetente: ");
         int novoNumeroRemetente = Integer.parseInt(numeroRemetente);
         Conta contaRemetente = encontrandoContas(novoNumeroRemetente);
-        /*if(contaRemetente !=  ){
-            JOptionPane.showMessageDialog(null, "Conta não encontrada, não foi possível realizar a transferência!");}*/
         if (contaRemetente != null) {
             String numeroDestinatario = JOptionPane.showInputDialog("Numero da conta do destinatario: ");
             int novoNumeroDestinatario = Integer.parseInt(numeroDestinatario);
@@ -126,6 +120,8 @@ public class App{
                 String valor = JOptionPane.showInputDialog("Digite o valor da transferência ");
                 double novoValor = Integer.parseInt(valor);
                 contaRemetente.transferencia(contaDestinatario, novoValor);
+            }else{
+                JOptionPane.showMessageDialog(null, "Conta não encontrada, não foi possível realizar a transferência!");
             }
         }
         comandos();
