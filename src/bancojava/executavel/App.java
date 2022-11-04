@@ -93,7 +93,7 @@ public class App{
             String valor =JOptionPane.showInputDialog(" Qual o valor que deseja depositar ?");
             double novoValor = Double.parseDouble(valor);
             conta.deposito(novoValor);
-            JOptionPane.showMessageDialog(null, "Valor depositado com sucesso!");
+            /*JOptionPane.showMessageDialog(null, "Valor depositado com sucesso!");*/
         } else {
             JOptionPane.showMessageDialog(null, " Não foi possivel realizar o deposito! ");
         }
@@ -128,7 +128,7 @@ public class App{
                 String valor = JOptionPane.showInputDialog("Digite o valor da transferência ");
                 double novoValor = Integer.parseInt(valor);
                 contaRemetente.tranferir(contaDestinatario, novoValor);
-                JOptionPane.showMessageDialog(null, "\nValor  transferido com suscesso  ");
+                /*JOptionPane.showMessageDialog(null, "\nValor  transferido com suscesso  ");*/
             } else {
                 JOptionPane.showMessageDialog(null, "Não foi possivel fazer a transferência! ");
             }
