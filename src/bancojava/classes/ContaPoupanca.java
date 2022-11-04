@@ -27,11 +27,9 @@ public class ContaPoupanca extends Conta{
             contaParaDeposito.setSaldo(valor + (contaParaDeposito.getSaldo() - taxa));
             valor = valor - taxa;
             super.transferencia(contaParaDeposito, valor);
-            super.transferencia(contaParaDeposito, valor);
             super.notificacao.enviarNotificacao("Transferência", valor, data, hora);
         }else if(this.getSaldo() < valor || this.getSaldo() <= 0){
             JOptionPane.showMessageDialog(null, "Não foi possível realizar a transferência!");
         }
-        super.transferencia(contaParaDeposito, valor);
     }
 }

@@ -47,7 +47,6 @@ public class ContaCorrente extends Conta{
             contaParaDeposito.setSaldo(valor + (contaParaDeposito.getSaldo() - taxa));
             valor = valor - taxa;
             super.transferencia(contaParaDeposito, valor);
-            super.transferencia(contaParaDeposito, valor);
             super.notificacao.enviarNotificacao("Transferência", valor, data, hora);
         }
     }
