@@ -32,4 +32,10 @@ public class ContaPoupanca extends Conta{
             JOptionPane.showMessageDialog(null, "Não foi possível realizar a transferência!");
         }
     }
+
+    @Override
+    public void deposito(double valor) {
+        super.deposito(valor);
+        this.setSaldo(this.getSaldo() + this.getSaldo() * this.getRendimento());
+    }
 }
