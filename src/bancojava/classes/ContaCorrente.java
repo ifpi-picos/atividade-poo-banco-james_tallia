@@ -45,17 +45,13 @@ public class ContaCorrente extends Conta{
     public void transferencia(Conta contaParaDeposito, Double valor) {
         this.contador += 1;
 
-        if(this.contador <= 2){
-            super.transferencia(contaParaDeposito, valor);
-            super.notificacao.enviarNotificacao("Transferência", valor, data, hora);
-        }
-        else {
+        if (this.contador > 2) {
             double taxa = valor * 5 / 100;
 
             contaParaDeposito.setSaldo(valor + (contaParaDeposito.getSaldo() - taxa));
             valor = valor - taxa;
-            super.transferencia(contaParaDeposito, valor);
-            super.notificacao.enviarNotificacao("Transferência", valor, data, hora);
         }
+        super.transferencia(contaParaDeposito, valor);
+        super.notificacao.enviarNotificacao("Transferência", valor, data, hora);
     }
 }
