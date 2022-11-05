@@ -34,8 +34,6 @@ public class Conta {
         if (valor > 0 && this.getSaldo() > 0) {
             setSaldo(getSaldo() - valor);
             this.notificacao.enviarNotificacao("Saque", valor,data, hora);
-        } else if(this.getSaldo() <= 0) {
-            JOptionPane.showMessageDialog(null, "Não foi possível realizar o saque!");
         }
     }
 

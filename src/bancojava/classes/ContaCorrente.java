@@ -3,10 +3,20 @@ package bancojava.classes;
 import javax.swing.*;
 
 public class ContaCorrente extends Conta{
-    public int contador =0;
+    public int contador;
     private double chequeEspecial = 500;
+    private double taxa;
     public ContaCorrente(Cliente cliente, int tipoConta, Notificacao notificacao){
         super(cliente, tipoConta, notificacao);
+        this.taxa = 0;
+    }
+
+    public double getTaxa() {
+        return taxa;
+    }
+
+    public void setTaxa(double taxa) {
+        this.taxa = taxa;
     }
 
     public double getChequeEspecial() {
@@ -22,16 +32,13 @@ public class ContaCorrente extends Conta{
 
     @Override
     public void sacar(double valor) {
-        if (this.getSaldo() > 0 && this.getSaldo() > valor) {
-            JOptionPane.showMessageDialog(null, "Saque realizado com sucesso!");
-        }
-        else if (this.getSaldo() < 0 || this.getSaldo() < valor) {
+        double saldocomLimite = this.getSaldo() + getChequeEspecial();
+        if((saldocomLimite - valor) >= 0) {
             JOptionPane.showMessageDialog(null,"O cheque especial será acionado!");
-            valor = valor + getChequeEspecial();
+            this.setSaldo(this.getSaldo() - valor);
             JOptionPane.showMessageDialog(null, "O cheque especial foi acionado com sucesso! ", "Cheque Especial",JOptionPane.ERROR_MESSAGE);
-
+            super.sacar(valor);
         }
-        super.sacar(valor);
     }
 
     @Override
@@ -40,6 +47,7 @@ public class ContaCorrente extends Conta{
 
         if(this.contador <= 2){
             super.transferencia(contaParaDeposito, valor);
+            super.notificacao.enviarNotificacao("Transferência", valor, data, hora);
         }
         else {
             double taxa = valor * 5 / 100;

@@ -22,7 +22,7 @@ public class ContaPoupanca extends Conta{
     @Override
     public void transferencia(Conta contaParaDeposito, Double valor) {
         if(valor > 0 && this.getSaldo() > valor){
-            double taxa = valor * 5 / 100;
+            double taxa = valor * 0.05;
 
             contaParaDeposito.setSaldo(valor + (contaParaDeposito.getSaldo() - taxa));
             valor = valor - taxa;
@@ -37,5 +37,13 @@ public class ContaPoupanca extends Conta{
     public void deposito(double valor) {
         super.deposito(valor);
         this.setSaldo(this.getSaldo() + this.getSaldo() * this.getRendimento());
+    }
+
+    @Override
+    public void sacar(double valor) {
+        if(this.getSaldo() <= 0 || this.getSaldo() < valor){
+            JOptionPane.showMessageDialog(null, "Não foi possível realizar o saque!");
+            super.sacar(valor);
+        }
     }
 }
