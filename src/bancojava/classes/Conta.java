@@ -36,7 +36,11 @@ public class Conta {
             this.notificacao.enviarNotificacao("Saque", valor,data, hora);
         }
     }
-
+    public void retirarPorcentagem(double valor){
+        if (valor > 0) {
+            setSaldo(getSaldo() - valor);
+        }
+    }
     public void transferencia(Conta contaParaDeposito, Double valor) {
         if (valor > 0 && this.getSaldo() > 0) {
             setSaldo(getSaldo() - valor);

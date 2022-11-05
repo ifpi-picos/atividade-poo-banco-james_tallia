@@ -44,6 +44,11 @@ public class ContaCorrente extends Conta {
     }
 
     @Override
+    public void retirarPorcentagem(double valor) {
+        super.retirarPorcentagem(valor);
+    }
+
+    @Override
     public void transferencia(Conta contaParaDeposito, Double valor) {
         this.contador += 1;
 
@@ -53,7 +58,7 @@ public class ContaCorrente extends Conta {
         } else {
             double v = valor;
             v = v * 5 / 100;
-            super.sacar(v);
+            super.retirarPorcentagem(v);
             super.transferencia(contaParaDeposito, valor);
         }
         super.notificacao.enviarNotificacao("Transferência", valor, data, hora);

@@ -33,6 +33,11 @@ public class ContaPoupanca extends Conta{
     }
 
     @Override
+    public void retirarPorcentagem(double valor) {
+        super.retirarPorcentagem(valor);
+    }
+
+    @Override
     public void deposito(double valor) {
         super.deposito(valor);
         this.setSaldo(this.getSaldo() + this.getSaldo() * this.getRendimento());
@@ -42,7 +47,7 @@ public class ContaPoupanca extends Conta{
     public void sacar(double valor) {
         if(this.getSaldo() <= 0 || this.getSaldo() < valor){
             JOptionPane.showMessageDialog(null, "Não foi possível realizar o saque!");
-            super.sacar(valor);
+            super.retirarPorcentagem(valor);
         }
     }
 }
