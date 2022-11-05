@@ -2,11 +2,12 @@ package bancojava.classes;
 
 import javax.swing.*;
 
-public class ContaCorrente extends Conta{
+public class ContaCorrente extends Conta {
     public int contador;
     private double chequeEspecial = 500;
     private double taxa;
-    public ContaCorrente(Cliente cliente, int tipoConta, Notificacao notificacao){
+
+    public ContaCorrente(Cliente cliente, int tipoConta, Notificacao notificacao) {
         super(cliente, tipoConta, notificacao);
         this.taxa = 0;
     }
@@ -26,17 +27,18 @@ public class ContaCorrente extends Conta{
     public void setChequeEspecial(double chequeEspecial) {
         this.chequeEspecial = chequeEspecial;
     }
-    public double getSaldoDisponivel(){
+
+    public double getSaldoDisponivel() {
         return super.getSaldo() + getChequeEspecial();
     }
 
     @Override
     public void sacar(double valor) {
         double saldocomLimite = this.getSaldo() + getChequeEspecial();
-        if((saldocomLimite - valor) >= 0) {
-            JOptionPane.showMessageDialog(null,"O cheque especial será acionado!");
+        if ((saldocomLimite - valor) >= 0) {
+            JOptionPane.showMessageDialog(null, "O cheque especial será acionado!");
             this.setSaldo(this.getSaldo() - valor);
-            JOptionPane.showMessageDialog(null, "O cheque especial foi acionado com sucesso! ", "Cheque Especial",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "O cheque especial foi acionado com sucesso! ", "Cheque Especial", JOptionPane.ERROR_MESSAGE);
             super.sacar(valor);
         }
     }
@@ -45,13 +47,16 @@ public class ContaCorrente extends Conta{
     public void transferencia(Conta contaParaDeposito, Double valor) {
         this.contador += 1;
 
-        if (this.contador > 2) {
-            double taxa = valor * 5 / 100;
+        if (this.contador <= 2) {
+            super.transferencia(contaParaDeposito, valor);
 
-            contaParaDeposito.setSaldo(valor + (contaParaDeposito.getSaldo() - taxa));
-            valor = valor - taxa;
+        } else {
+            double v = valor;
+            v = v * 5 / 100;
+            super.sacar(v);
+            super.transferencia(contaParaDeposito, valor);
         }
-        super.transferencia(contaParaDeposito, valor);
         super.notificacao.enviarNotificacao("Transferência", valor, data, hora);
     }
-}
+
+    }
