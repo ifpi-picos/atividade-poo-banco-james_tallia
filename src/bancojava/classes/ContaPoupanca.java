@@ -7,7 +7,7 @@ public class ContaPoupanca extends Conta{
 
     public ContaPoupanca(Cliente cliente, int tipoConta, Notificacao notificacao) {
         super(cliente, tipoConta, notificacao);
-
+        this.rendimento = 0.10;
 
     }
 
